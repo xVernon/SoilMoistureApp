@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SoilMoisture</string>
+    
+    <string-array name="options">
+        <item>Daily Stats</item>
+        <item>Weekly Stats</item>
+        <item>Monthly Stats</item>
+        <item>All Stats</item>
+    </string-array>
+</resources>

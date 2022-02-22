@@ -1,0 +1,4 @@
+rootProject.name = "SoilMoisture"
+include ':app'
+include ':MPChartLib'
+include ':MPChartExample'
