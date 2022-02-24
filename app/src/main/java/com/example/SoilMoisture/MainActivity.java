@@ -232,9 +232,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static void createFile(String message)
     {
         try {
-            File gpxfile = new File("/data/data/com.example.SoilMoisture/files/text/sample.txt");
-            FileWriter writer = new FileWriter(gpxfile);
-            writer.append(message+"\n");
+            File gpxfile = new File("/data/data/com.example.SoilMoisture/files/text/stats.txt");
+            if(!gpxfile.exists()) {
+                try {
+                    gpxfile.createNewFile();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            FileWriter writer = new FileWriter(gpxfile,true);
+            writer.append(message);
             writer.flush();
             writer.close();
 

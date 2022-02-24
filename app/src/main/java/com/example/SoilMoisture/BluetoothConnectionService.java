@@ -244,20 +244,18 @@ public class BluetoothConnectionService {
         }
 
         public void run(){
-            byte[] buffer = new byte[8 * 1024];  // buffer store for the stream
-            int bytes; // bytes returned from read()
+            byte[] buffer = new byte[1024];  // buffer store for the stream
+            int bytes = 0; // bytes returned from read()
 
 
             // Keep listening to the InputStream until an exception occurs
             while (true) {
                 // Read from the InputStream
                 try {
-
-                    bytes = mmInStream.read(buffer);
-                    String incomingMessage = new String(buffer, 0, bytes);
+                    bytes = mmSocket.getInputStream().read(buffer);
+                    String incomingMessage = new String(buffer,0,  bytes);
                     MainActivity.createFile(incomingMessage);
                     Log.d(TAG, "InputStream: " + incomingMessage);
-
                 } catch (IOException e) {
                     Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
                     break;
