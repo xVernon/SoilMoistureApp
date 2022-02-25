@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     BluetoothConnectionService mBluetoothConnection;
 
+    boolean clicked = false;
+
     Button btnStartConnection;
     Button btnSend;
+    Button nextBtn;
 
     EditText etSend;
 
@@ -185,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnONOFF = (Button) findViewById(R.id.btnONOFF);
+        Button nextBtn = (Button)  findViewById(R.id.nextBtn);
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
@@ -201,6 +205,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         lvNewDevices.setOnItemClickListener(MainActivity.this);
 
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clicked = true;
+                if(clicked)
+                {
+                    Intent myIntent = new Intent(MainActivity.this, ChooseOption.class);
+                    startActivity(myIntent);
+                }
+            }
+        });
 
         btnONOFF.setOnClickListener(new View.OnClickListener() {
             @Override

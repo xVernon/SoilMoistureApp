@@ -1,5 +1,6 @@
 package com.example.SoilMoisture;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class chooseOption extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ChooseOption extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_NUMBER = "com.example.a531calculator.example.EXTRA_NUMBER";
     public static String choosenOption;
@@ -36,9 +37,9 @@ public class chooseOption extends AppCompatActivity implements AdapterView.OnIte
                 if(clicked)
                 {
                     workout = 1;
-                    //Intent myIntent = new Intent(chooseOption.this, stats.class);
-                    //myIntent.putExtra(EXTRA_NUMBER,1);
-                    //startActivity(myIntent);
+                    Intent myIntent = new Intent(ChooseOption.this, Stats.class);
+                    myIntent.putExtra(EXTRA_NUMBER,1);
+                    startActivity(myIntent);
                 }
             }
         });

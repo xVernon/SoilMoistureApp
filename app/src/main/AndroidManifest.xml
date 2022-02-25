@@ -27,8 +27,8 @@
 
             </intent-filter>
         </activity>
-        <activity android:name="com.example.SoilMoisture.chooseOption" />
-        <activity android:name="com.example.SoilMoisture.stats" />
+        <activity android:name="com.example.SoilMoisture.ChooseOption" />
+        <activity android:name="com.example.SoilMoisture.Stats" />
     </application>
 
 </manifest>

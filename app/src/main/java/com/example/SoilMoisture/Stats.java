@@ -25,7 +25,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
+public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         OnChartValueSelectedListener {
 
     public static final String EXTRA_TEXT1 = "com.example.a531calculator.example.EXTRA_TEXT1";
@@ -36,6 +36,7 @@ public class stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
     private PieChart chart1;
     private BarChart chart2;
     private PieChart chart3;
+    private ChartDataService chartDataService;
 
     public void onCreate(Bundle savedInstanceState){
 
@@ -52,7 +53,7 @@ public class stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         text25.setText("23.01.22");
         text38.setText("Entire Period");
         text39.setText("Average\nmeasurement");
-        text.setText(chooseOption.choosenOption);
+        text.setText(ChooseOption.choosenOption);
 
         //PIECHART
 
@@ -98,7 +99,8 @@ public class stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         //pieChart.invalidate(); // refresh
 
 
-
+        chartDataService = new ChartDataService();
+        System.out.println(chartDataService.generateData());
 
         //PIECHART
 
