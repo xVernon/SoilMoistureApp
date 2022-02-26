@@ -8,13 +8,13 @@ public class ChartData {
     private int day;
     private int month;
     private int year;
-    private int hour;
-    private int minute;
+    private String hour;
+    private String minute;
     private float measurment;
 
     List <Object> dataList = new ArrayList<Object>();
 
-    public ChartData(int day, int month, int year, int hour, int minute, float measurment) {
+    public ChartData(int day, int month, int year, String hour, String minute, float measurment) {
         this.day = day;
         this.month = month;
         this.year = year;
@@ -47,19 +47,19 @@ public class ChartData {
         this.year = year;
     }
 
-    public int getHour() {
+    public String getHour() {
         return hour;
     }
 
-    public void setHour(int hour) {
+    public void setHour(String hour) {
         this.hour = hour;
     }
 
-    public int getMinute() {
+    public String getMinute() {
         return minute;
     }
 
-    public void setMinute(int minute) {
+    public void setMinute(String minute) {
         this.minute = minute;
     }
 

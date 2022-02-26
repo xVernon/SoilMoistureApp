@@ -37,6 +37,7 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
     private BarChart chart2;
     private PieChart chart3;
     private ChartDataService chartDataService;
+    private CollectionData collectionData;
 
     public void onCreate(Bundle savedInstanceState){
 
@@ -100,7 +101,12 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
 
 
         chartDataService = new ChartDataService();
+        collectionData = new CollectionData();
         System.out.println(chartDataService.generateData());
+        System.out.println(collectionData.CollectionDailyData(23,02,22));
+        System.out.println(collectionData.GetTimeOfMeasurment(23,02,22));
+        float avgg = collectionData.AverageMeasurmentPerDay(collectionData.CollectionDailyData(23,02,22));
+        System.out.println(avgg);
 
         //PIECHART
 

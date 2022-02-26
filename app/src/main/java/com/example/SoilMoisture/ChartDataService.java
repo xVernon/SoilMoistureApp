@@ -32,15 +32,14 @@ public class ChartDataService {
             ChartData chart = new ChartData(Integer.parseInt(listString.get(0)),
                     Integer.parseInt(listString.get(1)),
                     Integer.parseInt(listString.get(2)),
-                    Integer.parseInt(listString.get(3)),
-                    Integer.parseInt(listString.get(4)),
+                    listString.get(3),
+                    listString.get(4),
                     Float.parseFloat(listString.get(5)));
 
             dataString.add(chart);
         }
     return dataString;
     }
-
 
     private String readFile(String file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader (file));
