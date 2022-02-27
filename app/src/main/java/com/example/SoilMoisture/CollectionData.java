@@ -17,7 +17,7 @@ public class CollectionData {
         List<ChartData> chartDataList = chartDataService.generateData();
         List<Date> dateDataMeasurment = new ArrayList<>();
         for (ChartData chartData : chartDataList) {
-            date = new Date(chartData.getYear() + 2000, chartData.getMonth(),
+            date = new Date(chartData.getYear() + 2000, chartData.getMonth()-1,
                     chartData.getDay(),
                     Integer.parseInt(chartData.getHour()),
                     Integer.parseInt(chartData.getMinute()));
@@ -40,13 +40,13 @@ public class CollectionData {
 
     public String ReturnLastMeasurmentDateShortVersion(Date date) {
         chartDataService = new ChartDataService();
-        String shortVersionDate = "Error";
-        String day = String.valueOf(date.getDay());
-        String month = String.valueOf(date.getMonth());
+        String shortVersionDate = null;
+        String day = String.valueOf(date.getDate());
+        String month = String.valueOf(date.getMonth()+1);
         String year = String.valueOf(date.getYear());
-        if(date.getDay() >= 0 && date.getDay() <=9) day = "0" + date.getDay();
-        if(date.getMonth() >= 0 && date.getMonth() <=9) month = "0" + date.getMonth();
-        shortVersionDate = day + "." + month + "." + date.getYear();
+        if(date.getDate() >= 0 && date.getDate() <=9) day = "0" + date.getDate();
+        if(date.getMonth() >= 0 && date.getMonth() <=9) month = "0" + (date.getMonth()+1);
+        shortVersionDate = day + "." + month + "." + year;
         return shortVersionDate;
     }
 
@@ -56,14 +56,13 @@ public class CollectionData {
         int year, month, day, hour, minute;
         float lastMeasurment = 0;
 
-        year = date.getYear();
-        month = date.getMonth();
-        day = date.getDay();
+        year = date.getYear() - 2000;
+        month = date.getMonth() + 1;
+        day = date.getDate();
         hour = date.getHours();
         minute = date.getMinutes();
 
         List<ChartData> chartDataList = chartDataService.generateData();
-        List<Float> floatDataMeasurment = new ArrayList<>();
         for (ChartData chartData : chartDataList) {
             if (chartData.getDay() == day &&
                     chartData.getMonth() == month &&
