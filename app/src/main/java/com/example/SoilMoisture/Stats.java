@@ -23,6 +23,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
@@ -38,6 +39,7 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
     private PieChart chart3;
     private ChartDataService chartDataService;
     private CollectionData collectionData;
+    private Date date;
 
     public void onCreate(Bundle savedInstanceState){
 
@@ -50,11 +52,25 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         TextView text38 = (TextView) findViewById(R.id.textView38);
         TextView text39 = (TextView) findViewById(R.id.textView39);
 
-        text24.setText("15:24");
-        text25.setText("23.01.22");
+        chartDataService = new ChartDataService();
+        collectionData = new CollectionData();
+        date = collectionData.GetLastMeasurmentDate();
+        String lastMeasurmentTime;
+        String lastMeasurmentDateShortVersion;
+        float lastMeasurmentValue;
+
+        lastMeasurmentTime = collectionData.ReturnLastMeasurmentTime(date);
+        lastMeasurmentDateShortVersion = collectionData.ReturnLastMeasurmentDateShortVersion(date);
+        lastMeasurmentValue = collectionData.GetLastMeasurment(date);
+
+        //text24.setText("15:24");
+        //text25.setText("23.01.22");
+        text24.setText(lastMeasurmentTime);
+        text25.setText(lastMeasurmentDateShortVersion);
         text38.setText("Entire Period");
         text39.setText("Average\nmeasurement");
         text.setText(ChooseOption.choosenOption);
+
 
         //PIECHART
 
@@ -67,7 +83,7 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         Legend l = pieChart.getLegend();
         l.setEnabled(false);
 
-        pieChart.setCenterText(String.valueOf(measure)+" %\nLast Measure");
+        pieChart.setCenterText(String.valueOf(lastMeasurmentValue)+" %\nLast Measurment");
         pieChart.setCenterTextColor(Color.WHITE);
         pieChart.setCenterTextSize(20f);
 
@@ -78,8 +94,8 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
 
         List<PieEntry> entries = new ArrayList<>();
 
-        entries.add(new PieEntry(measure, ""));
-        entries.add(new PieEntry(100.0f-measure));
+        entries.add(new PieEntry(lastMeasurmentValue, ""));
+        entries.add(new PieEntry(100.0f-lastMeasurmentValue));
 
         PieDataSet set = new PieDataSet(entries,"");
 
@@ -100,13 +116,14 @@ public class Stats extends AppCompatActivity implements SeekBar.OnSeekBarChangeL
         //pieChart.invalidate(); // refresh
 
 
-        chartDataService = new ChartDataService();
-        collectionData = new CollectionData();
+
         System.out.println(chartDataService.generateData());
         System.out.println(collectionData.CollectionDailyData(23,02,22));
         System.out.println(collectionData.GetTimeOfMeasurment(23,02,22));
         float avgg = collectionData.AverageMeasurmentPerDay(collectionData.CollectionDailyData(23,02,22));
         System.out.println(avgg);
+        System.out.println(date);
+        System.out.println(collectionData.GetLastMeasurment(date));
 
         //PIECHART
 
